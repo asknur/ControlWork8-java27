@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003
+      author: Askar
+      changes:
+        - createTable:
+            tableName: files
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: stored_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: size
+                  type: bigint
+              - column:
+                  name: is_public
+                  type: boolean
+                  defaultValueBoolean: true
+              - column:
+                  name: private_key
+                  type: varchar(255)
+              - column:
+                  name: download_count
+                  type: int
+                  defaultValueNumeric: 0
+              - column:
+                  name: uploaded_at
+                  type: timestamp
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_files_user
+                    references: users(id)
