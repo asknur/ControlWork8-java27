@@ -20,6 +20,13 @@
                         <#if auth.principal?has_content && auth.principal != "anonymousUser">
                             <li class="nav-item"><a class="nav-link" href="/profile">Профиль</a></li>
                             <li class="nav-item"><a class="nav-link" href="/files/upload">Загрузить</a></li>
+                            <#list auth.authorities as a>
+                                <#if a.authority == "ROLE_ADMIN">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-warning" href="/admin">Админ панель</a>
+                                    </li>
+                                </#if>
+                            </#list>
                         </#if>
                     </#if>
                 </ul>
@@ -43,6 +50,7 @@
                         <a href="/auth/login" class="btn btn-outline-light btn-sm">Войти</a>
                         <a href="/auth/register" class="btn btn-success btn-sm">Регистрация</a>
                     </#if>
+
                 </div>
             </div>
         </div>

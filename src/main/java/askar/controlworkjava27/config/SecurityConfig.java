@@ -37,6 +37,8 @@ public class SecurityConfig {
                         .requestMatchers("/files/public/**").permitAll()
                         .requestMatchers("/files/download/public/**").permitAll()
                         .requestMatchers("/files/download/private/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+
                         .anyRequest().authenticated()
                 );
         return http.build();
