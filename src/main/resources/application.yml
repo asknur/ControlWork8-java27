@@ -1,0 +1,52 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: ControlWork-java27
+  mvc:
+    static-path-pattern: /static/**
+
+  datasource:
+    url: jdbc:h2:./db/test;AUTO_SERVER=TRUE
+    username: root
+    password: 1234
+    driver-class-name: org.h2.Driver
+  #    sql:
+  #      init:
+  #        mode: always
+
+  liquibase:
+    change-log: classpath:/db/changelog/master.yaml
+
+  mail:
+    host: smtp.gmail.com
+    username: ${SMTP_USERNAME}
+    password: ${SMTP_PASSWORD}
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+logging:
+  file:
+    path: logs
+  level:
+    askar.controlworkjava27: debug
+    com.zaxxer.hikari: error
+    org.apache.tomcat: error
+    liquibase: error
+    root: info
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n"
+
+file:
+  upload:
+    path: uploads/
